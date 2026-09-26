@@ -1,6 +1,6 @@
 # Personal CV Website
 
-**Name:** Xy
+**Name:** Xyze G. Mantalaba
 **Year Level:** 4th Year
 **Set/Section:** C
 **Subject:** IT415 - Application Development and Emerging Technologies
