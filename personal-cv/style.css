@@ -1,0 +1,473 @@
+/* =========================================
+   CSS VARIABLES
+   These store repeated values (colors, spacing) in one place.
+   If you want to change a color everywhere on the site,
+   you only need to change it here instead of hunting through the file.
+   ========================================= */
+:root {
+  --color-paper: #f5f7f9;
+  --color-ink: #1b2733;       /* deep navy, used for headings and body text */
+  --color-muted: #5c6b78;
+  --color-accent: #2a86a8;    /* cyan-blue accent: links, icons, highlights */
+  --color-accent-soft: #e4f1f5; /* light tint of the accent, used for hover backgrounds */
+  --color-border: #dbe2e7;
+  --color-card: #ffffff;
+
+  --font-heading: "Lora", Georgia, serif;
+  --font-body: "Inter", -apple-system, Segoe UI, sans-serif;
+
+  --max-width: 760px;
+
+  /* how far and how long the reveal animation moves/takes */
+  --reveal-distance: 14px;
+  --reveal-duration: 0.5s;
+}
+
+/* =========================================
+   RESET / BASE STYLES
+   Browsers apply their own default spacing to elements.
+   This section removes that so we have full control.
+   ========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* padding no longer adds extra width to elements */
+}
+
+html {
+  scroll-behavior: smooth; /* smooth scroll when clicking nav links */
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+  line-height: 1.6;
+}
+
+/* .wrap centers content and stops it from stretching too wide on big screens */
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus-visible {
+  text-decoration: underline;
+}
+
+/* keeps a visible outline for keyboard users tabbing through the page */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.muted {
+  color: var(--color-muted);
+}
+
+/* =========================================
+   HEADER / NAVIGATION
+   ========================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  background-color: var(--color-paper);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 10;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #38bdf8;
+  display: block;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.logo:hover img {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 8px rgba(0, 200, 255, 0.4));
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.nav a {
+  position: relative;
+  color: var(--color-ink);
+  font-size: 0.92rem;
+  text-decoration: none;
+  padding-bottom: 2px;
+}
+
+/* underline that grows in on hover instead of the default browser underline */
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1.5px;
+  background-color: var(--color-accent);
+  transition: width 0.2s ease;
+}
+
+.nav a:hover::after,
+.nav a:focus-visible::after {
+  width: 100%;
+}
+
+/* overrides the default underline-on-hover so only the animated bar shows */
+.nav a:hover,
+.nav a:focus-visible {
+  text-decoration: none;
+}
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+.hero {
+  padding: 72px 0 56px;
+}
+
+.hero-eyebrow {
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  margin-bottom: 6px;
+}
+
+.hero-role {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: var(--color-muted);
+  margin-bottom: 20px;
+}
+
+.hero-text {
+  max-width: 58ch; /* keeps line length comfortable to read */
+}
+
+/*
+  .justify is applied only to longer paragraphs (hero intro, About Me).
+  text-align: justify stretches each line to fill the full width, like a
+  printed book. hyphens: auto lets long words break across lines cleanly
+  so justification doesn't create big gaps. We turn it off on mobile
+  below, since justify text on narrow columns can look uneven.
+*/
+.justify {
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* =========================================
+   GENERAL SECTION SPACING
+   Each section is separated by a thin top border instead of a box,
+   which keeps the page feeling like a document rather than stacked cards.
+   ========================================= */
+.section {
+  padding: 40px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+}
+
+.section-intro {
+  color: var(--color-muted);
+  margin-bottom: 20px;
+  max-width: 58ch;
+}
+
+.section p + p {
+  margin-top: 14px;
+}
+
+/* =========================================
+   EDUCATION
+   ========================================= */
+.education-item h3 {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+/* =========================================
+   SKILLS LIST
+   ========================================= */
+.skill-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.skill-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px 12px;
+  margin: 0 -10px;
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+/* a light tint on hover, just enough to show the row is being read */
+.skill-list li:hover {
+  background-color: var(--color-accent-soft);
+}
+
+.skill-name {
+  font-weight: 600;
+}
+
+.skill-level {
+  font-size: 0.92rem;
+  color: var(--color-muted);
+}
+
+/* =========================================
+   PRIMARY BUTTON
+   Used for the "View My Portfolio" link. A real <a> tag styled to look
+   like a button — it still works without JavaScript and is keyboard
+   accessible by default, unlike a <div> made to look clickable.
+   ========================================= */
+.btn-primary {
+  display: inline-block;
+  padding: 10px 22px;
+  background-color: var(--color-ink);
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background-color: var(--color-accent);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   PROJECTS
+   ========================================= */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.project-card {
+  padding: 20px;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+/* small lift on hover, a common signal that a card is a clickable/notable item */
+.project-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-accent);
+}
+
+.project-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+
+.project-card p {
+  font-size: 0.94rem;
+  margin-bottom: 10px;
+}
+
+.project-stack {
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* placeholder cards look intentionally quieter/dashed, so they read as "not filled in yet" */
+.project-card.placeholder {
+  background-color: transparent;
+  border-style: dashed;
+}
+
+.project-card.placeholder h3 {
+  color: var(--color-muted);
+}
+
+/* =========================================
+   PLAIN LISTS (Strengths / Interests)
+   ========================================= */
+.plain-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.plain-list li {
+  padding-left: 18px;
+  position: relative;
+}
+
+/* a small dash instead of a default bullet point */
+.plain-list li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+
+/* =========================================
+   CONTACT
+   ========================================= */
+.contact-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-label {
+  display: inline-block;
+  width: 70px;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  padding: 28px 0 40px;
+}
+
+.site-footer p {
+  color: var(--color-muted);
+  font-size: 0.88rem;
+}
+
+/* =========================================
+   REVEAL-ON-SCROLL ANIMATION
+   Elements with class "reveal" start slightly lower and transparent.
+   A small script (in index.html) adds the "visible" class once the
+   element scrolls into view, which triggers this transition.
+   ========================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance));
+  transition: opacity var(--reveal-duration) ease, transform var(--reveal-duration) ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   @media applies these styles only when the screen is
+   narrower than 640px, i.e. most phones.
+   ========================================= */
+@media (max-width: 640px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .nav {
+    gap: 14px;
+    font-size: 0.9rem;
+  }
+
+  .hero {
+    padding: 48px 0 40px;
+  }
+
+  .hero h1 {
+    font-size: 2.1rem;
+  }
+
+  /*
+    Justified text can create awkward, uneven gaps between words on
+    narrow columns, so on phones we fall back to normal left-aligned text.
+  */
+  .justify {
+    text-align: left;
+    hyphens: none;
+  }
+}
+
+/*
+  Respects users who have asked their system to reduce motion:
+  turns off smooth scrolling, the hover lift on project cards, and
+  skips the fade/slide-in animation entirely (content is just shown).
+*/
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .project-card {
+    transition: none;
+  }
+
+  .project-card:hover {
+    transform: none;
+  }
+
+  .btn-primary {
+    transition: none;
+  }
+
+  .btn-primary:hover {
+    transform: none;
+  }
+}

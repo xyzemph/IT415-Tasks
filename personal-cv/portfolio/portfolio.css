@@ -1,0 +1,46 @@
+/*
+  This page reuses every color, font, and layout rule already defined in
+  the main style.css (the :root variables, .site-header, .hero, .section,
+  .plain-list, .reveal animation, and so on) so both pages look and behave
+  the same way. @import pulls that whole file in first; everything below
+  just adds the few extra rules this page needs.
+*/
+@import url("../style.css");
+
+/* =========================================
+   PORTFOLIO ITEMS
+   Each past project/activity is wrapped in a .portfolio-item block,
+   with a thin left border to visually group its title and description.
+   ========================================= */
+.portfolio-item {
+  padding-left: 16px;
+  border-left: 3px solid var(--color-border);
+  margin-bottom: 24px;
+  transition: border-color 0.2s ease;
+}
+
+.portfolio-item:hover {
+  border-left-color: var(--color-accent);
+}
+
+.portfolio-item h3 {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.portfolio-item p {
+  margin-bottom: 8px;
+}
+
+.portfolio-course {
+  color: var(--color-accent);
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* the "Livestream Coding", "Mock Interview" etc. reference list sits a
+   little tighter than the item blocks above, since it's just titles */
+#more .plain-list {
+  margin-top: 12px;
+}
