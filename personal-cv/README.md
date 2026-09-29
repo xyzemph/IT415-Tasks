@@ -3,7 +3,8 @@
 **Name:** Xyze G. Mantalaba
 **Year Level:** 4th Year
 **Set/Section:** C
-**Subject:** Programming Subject - Section A (Branch 1 Edit)
+**Subject:** Programming Subject - Successfully Resolved Conflict
+
 
 ## About This Project
 
